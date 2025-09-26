@@ -26,6 +26,8 @@ navbar:
     children:
       - label: "⛅️ Cloud Locations with Brev"
         target: advanced_04
+      - label: "🤖 Using Nvidia AI Services"
+        target: advanced_05
       ## INSERT HERE ##
   - label: Extras
     children:

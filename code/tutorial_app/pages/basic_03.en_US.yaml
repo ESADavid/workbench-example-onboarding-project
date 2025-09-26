@@ -110,14 +110,13 @@ tasks:
     msg: |
       The best way to verify you have the latest changes is to use **Git > History**.
 
-      This is an interactive view of the commit history, and it helps you comp
+      This is an interactive view of the commit history, and it helps you compare changes between commits.
 
-      The fastest is to use **Git > History**.
       - Click **Project View > Git > History**.
       - You should see the latest commit with a message like "Updated README.md"
       - You should also see the previous commit with a message like "Initial commit"
     response: |
-      This is an interactive view of the commit history, and it helps you compare
+      This is an interactive view of the commit history, and it helps you compare changes between different versions of your project.
   - name: Create a Git Branch
     msg: |
       Workbench uses [Git branches](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging) 
@@ -168,7 +167,7 @@ tasks:
     response: |
       Oh wait! Not yet! Ahh, too late. 
 
-      That's ok. Becuase we published this project to the remote Git server, we can clone it again to keep working.
+      That's ok. Because we published this project to the remote Git server, we can clone it again to keep working.
     test: wait_for_no_proj
 
   - name: Clone the project
@@ -179,7 +178,7 @@ tasks:
       
       Return to the homepage and clone your project using its HTTPS Git URL. 
       
-      > *HINT:* You can find the URL using the link generated in *[Publish Project to Git Server](#publish-project-to-git-server)*.
+      > *HINT:* You can find the URL using the link generated in *[Publish to GitHub](#publish-to-github)*.
     response: |
       And just like that, we are back to where we started. We can create a new branch, continue to write code, and commit and push that code back upstream. Easy peasy!
     test: wait_for_proj
@@ -187,7 +186,7 @@ tasks:
 closing_msg: |
   **Congratulations! You have finished this exercise!**
 
-  In this excercise, we tracked code changes, shared our code, synchronized our code with remote changes, and finally pulled the code down.
+  In this exercise, we tracked code changes, shared our code, synchronized our code with remote changes, and finally pulled the code down.
 
   You can delete the project again when you are ready.
 

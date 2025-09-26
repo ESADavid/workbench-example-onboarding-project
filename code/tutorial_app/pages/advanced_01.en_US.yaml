@@ -7,7 +7,7 @@ welcome_msg: |
 
   In this exercise, we will learn how to connect a remote location to your local AI Workbench. You can always work locally, but connecting and working in a remote system can greatly improve flexibility and portability of your AI projects. 
 
-  For this excercise, you will need a remote Ubuntu system. Versions 22.04 and 24.04 are officially supported.
+  For this exercise, you will need a remote Ubuntu system. Versions 22.04 and 24.04 are officially supported.
 header_onetime: Prepare the Remote Machine
 header_everytime: Connecting a Remote Location
 

@@ -1,7 +1,7 @@
 # header data
 title: Multi-Container Projects
 welcome_msg: |
-  In this exercise, we will learn how to work with multi-container projects via Compose. Working in a single container may be convenient for simple development work, but multi-container projects involving Compose services can can greatly improve the versatility of your AI projects and enable you to take your creations out of AI Workbench.
+  In this exercise, we will learn how to work with multi-container projects via Compose. Working in a single container may be convenient for simple development work, but multi-container projects involving Compose services can greatly improve the versatility of your AI projects and enable you to take your creations out of AI Workbench.
 
   Today, we will work through an example of creating a simple flask application using a multi-container Compose project.
 header: Orchestrating Multiple Containers
@@ -15,7 +15,7 @@ next: Next
 tasks: 
   - name: Create a new project.
     msg: |
-      Create a new project for this excercise, name it `multi-container-project`.
+      Create a new project for this exercise, name it `multi-container-project`.
 
       Select the `Python Basic` base container.
 
@@ -151,7 +151,7 @@ info_wait_for_project: "Waiting for the project to exist."
 info_build_ready: ~
 info_build_needed: "It looks like your project needs you to start a new build. Please do that in the environment tab."
 info_build_running: "Your project's build is currently running."
-info_buid_error: "Uh oh! There was an error building your project. Please check the logs."
+info_build_error: "Uh oh! There was an error building your project. Please check the logs."
 info_container_not_running: Your project container isn't running. Please start it.
 info_container_running: ~
 info_container_paused: "The container has been manually paused."

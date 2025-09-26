@@ -1,0 +1,89 @@
+# header data
+title: Using Nvidia AI Services
+welcome_msg: |
+  In this exercise, we will learn how to integrate Nvidia's AI services into your AI Workbench project. Nvidia provides powerful AI APIs that you can use to enhance your applications with advanced AI capabilities.
+
+  We will create a simple application that uses Nvidia's API for text generation.
+header: Integrating Nvidia AI APIs
+
+# general strings
+waiting_msg: Let me know when you are ready.
+testing_msg: Waiting for task to complete.
+next: Next
+
+# task script
+tasks:
+  - name: Create a new project
+    msg: |
+      Create a new project named `nvidia-api-project` using the Python Basic base environment.
+    response: Great! Now let's set up the environment.
+    test: create_project
+
+  - name: Install required packages
+    msg: |
+      We need to install the `requests` package for API calls. Add it to the project environment.
+    response: The package is installed.
+    test: package_setup
+
+  - name: Get Nvidia API key
+    msg: |
+      To use Nvidia's AI services, you need an API key. Sign up at [Nvidia NGC](https://ngc.nvidia.com/) if you don't have an account, and generate an API key from your account settings.
+    response: Once you have the API key, we can proceed.
+
+  - name: Create the API client code
+    msg: |
+      Create a new file `nvidia_api.py` in the `code` directory with the following code:
+
+      ```python
+      import requests
+      import os
+
+      class NvidiaAPI:
+          def __init__(self, api_key):
+              self.api_key = api_key
+              self.base_url = "https://api.nvidia.com/v1"
+
+          def generate_text(self, prompt, max_tokens=100):
+              headers = {
+                  "Authorization": f"Bearer {self.api_key}",
+                  "Content-Type": "application/json"
+              }
+              data = {
+                  "prompt": prompt,
+                  "max_tokens": max_tokens
+              }
+              response = requests.post(f"{self.base_url}/generate", json=data, headers=headers)
+              if response.status_code == 200:
+                  return response.json()["text"]
+              else:
+                  raise Exception(f"API call failed: {response.text}")
+
+      if __name__ == "__main__":
+          api_key = os.getenv("NVIDIA_API_KEY")
+          if not api_key:
+              print("Please set NVIDIA_API_KEY environment variable")
+              exit(1)
+          api = NvidiaAPI(api_key)
+          result = api.generate_text("Hello, Nvidia AI!")
+          print(result)
+      ```
+    response: The code is ready.
+    test: create_web_app
+
+  - name: Set environment variable
+    msg: |
+      In the project environment, add an environment variable `NVIDIA_API_KEY` with your API key value.
+    response: The variable is set.
+
+  - name: Test the API call
+    msg: |
+      Run the script to test the API call: `python code/nvidia_api.py`
+    response: You should see generated text from Nvidia's AI.
+
+# footer data
+closing_msg: "Congratulations! You have integrated Nvidia's AI services into your project."
+
+# testing messages
+info_wait_for_project: "Waiting for the project to exist."
+info_wait_for_package: "Waiting for the package to be installed."
+info_wait_for_file: "Waiting for the file to be created."

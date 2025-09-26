@@ -1,8 +1,6 @@
-ADVANCED TOPICS
-- FUTURE: how to manipulate post build and pre build
-- FUTURE: sharing a project
+# TODO: Fix Pylint Warnings
 
-FEATURES
-- FUTURE: further reading links on each lesson
-- COMPLETED: Added advanced tutorial for using Nvidia AI Services
-- COMPLETED: Fixed tutorial content issues (typos, incomplete text, broken links)
+- [x] Fix advanced_06_tests.py: Remove unused import 'list_projects', add encoding to open()
+- [x] Fix advanced_07_tests.py: Remove unused import 'os' and 'list_projects'
+- [x] Fix advanced_07.py: Change import to relative import for advanced_07_tests
+- [x] Fix advanced_06.py: Change import to relative import for advanced_06_tests

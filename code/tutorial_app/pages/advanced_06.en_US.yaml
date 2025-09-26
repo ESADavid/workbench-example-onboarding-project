@@ -1,0 +1,192 @@
+# header data
+title: Build Scripts and Automation
+welcome_msg: |
+  In this advanced tutorial, we will explore how to use build scripts to automate tasks during the AI Workbench container build process. Understanding preBuild.bash and postBuild.bash scripts allows you to customize your development environment and automate setup tasks.
+
+  Build scripts are powerful tools for:
+  - Installing additional system dependencies
+  - Setting up environment variables
+  - Downloading models or datasets
+  - Configuring services
+  - Running initialization tasks
+header: Customizing Builds with Scripts
+
+# general strings
+waiting_msg: Let me know when you are ready.
+testing_msg: Waiting for task to complete.
+next: Next
+
+# task script
+tasks:
+  - name: Examine the Build Script Files
+    msg: |
+      AI Workbench projects include two special bash script files that run during the container build process:
+
+      - `preBuild.bash`: Executes at the **beginning** of the build, before any packages are installed
+      - `postBuild.bash`: Executes at the **end** of the build, after all packages are installed
+
+      Let's examine these files in your project. Open both `preBuild.bash` and `postBuild.bash` files in the project root to see their current content.
+    response: |
+      These files contain helpful comments explaining when they execute and what they're for. They're currently empty except for comments, which means they don't do anything during the build process yet.
+
+  - name: Add Commands to preBuild.bash
+    msg: |
+      The `preBuild.bash` script runs before any packages are installed, making it perfect for:
+
+      - Installing system-level dependencies
+      - Setting up repositories
+      - Downloading large files that don't change often
+      - Configuring system settings
+
+      Let's add some useful commands to `preBuild.bash`. Open the file and replace its contents with:
+
+      ```bash
+      #!/bin/bash
+      # Commands that run at the beginning of the container build process
+
+      # Update package lists
+      apt-get update
+
+      # Install additional system packages needed for your project
+      apt-get install -y curl wget unzip
+
+      # Create directories for data or models
+      mkdir -p /workspace/data
+      mkdir -p /workspace/models
+
+      # Set environment variables that might be needed during build
+      export DEBIAN_FRONTEND=noninteractive
+      ```
+
+      Save the file and make sure it's executable with `chmod +x preBuild.bash`.
+    response: |
+      Great! Now your preBuild script will install some basic utilities and create directories that your application might need.
+
+  - name: Add Commands to postBuild.bash
+    msg: |
+      The `postBuild.bash` script runs after all packages are installed, making it ideal for:
+
+      - Downloading models or datasets
+      - Setting up user-specific configurations
+      - Running initialization scripts
+      - Cleaning up build artifacts
+
+      Let's add some useful commands to `postBuild.bash`. Open the file and replace its contents with:
+
+      ```bash
+      #!/bin/bash
+      # Commands that run at the end of the container build process
+
+      # Download a sample model or dataset (example)
+      # curl -L https://example.com/sample-model.zip -o /workspace/models/sample-model.zip
+      # unzip /workspace/models/sample-model.zip -d /workspace/models/
+
+      # Set up Python environment
+      pip install --upgrade pip
+
+      # Install any additional Python packages not in requirements.txt
+      # pip install some-package
+
+      # Create a welcome script for users
+      cat > /workspace/welcome.sh << 'EOF'
+      #!/bin/bash
+      echo "Welcome to your customized AI Workbench environment!"
+      echo "Build completed successfully."
+      echo "Available directories:"
+      ls -la /workspace/
+      EOF
+
+      chmod +x /workspace/welcome.sh
+
+      # Clean up package cache to reduce image size
+      apt-get clean
+      rm -rf /var/lib/apt/lists/*
+      ```
+
+      Save the file and make sure it's executable with `chmod +x postBuild.bash`.
+    response: |
+      Excellent! Your postBuild script now includes examples of downloading resources, setting up the environment, and cleaning up.
+
+  - name: Test the Build Scripts
+    msg: |
+      To test your build scripts, you need to rebuild your project environment. This will execute both scripts during the build process.
+
+      Go to the **Environment** tab in your project, then click **Rebuild** to trigger a new build. The build process will:
+
+      1. Run `preBuild.bash` first
+      2. Install all system and Python packages
+      3. Run `postBuild.bash` last
+
+      Monitor the build logs to see your scripts executing. You should see output from the commands you added.
+    response: |
+      Perfect! You should see the build scripts executing in the logs, installing packages, creating directories, and setting up your environment.
+
+  - name: Verify Script Execution
+    msg: |
+      After the build completes, verify that your scripts worked correctly by checking:
+
+      1. **Directories created**: Check if `/workspace/data` and `/workspace/models` exist
+      2. **Packages installed**: Try running `curl --version` and `wget --version`
+      3. **Welcome script**: Run `/workspace/welcome.sh` to see the welcome message
+      4. **Environment**: Check that everything is set up as expected
+
+      Open a terminal and run these verification commands.
+    response: |
+      Great! Your build scripts are working correctly and have customized your development environment.
+
+  - name: Advanced Build Script Techniques
+    msg: |
+      Build scripts can be much more sophisticated. Here are some advanced techniques:
+
+      **Conditional Logic:**
+      ```bash
+      if [ "$ENVIRONMENT" = "development" ]; then
+          # Development-specific setup
+          pip install pytest black
+      fi
+      ```
+
+      **Error Handling:**
+      ```bash
+      set -e  # Exit on any error
+      trap 'echo "Build failed at line $LINENO"' ERR
+      ```
+
+      **Downloading Models:**
+      ```bash
+      # Download from NGC or Hugging Face
+      wget https://api.ngc.nvidia.com/v2/models/nvidia/diffusion_models/hub/versions/1/files/sd-v1-4.ckpt -O /workspace/models/sd-v1-4.ckpt
+      ```
+
+      **Environment-Specific Configurations:**
+      ```bash
+      case $BUILD_ENV in
+          "gpu")
+              echo "Setting up GPU environment"
+              ;;
+          "cpu")
+              echo "Setting up CPU environment"
+              ;;
+      esac
+      ```
+
+      Experiment with these techniques in your build scripts to create more sophisticated automation.
+    response: |
+      Build scripts are incredibly powerful for automating your development environment setup. You can create complex, conditional setups that adapt to different needs.
+
+# footer data
+closing_msg: |
+  **Congratulations!** You have completed the Build Scripts tutorial.
+
+  In this tutorial, you learned how to:
+  - Use `preBuild.bash` and `postBuild.bash` scripts
+  - Automate environment setup during container builds
+  - Install system packages and download resources
+  - Create sophisticated build automation
+
+  Build scripts help ensure consistent, reproducible development environments across your team.
+
+# testing messages
+info_wait_for_script_edit: "Waiting for you to edit the build script files."
+info_wait_for_rebuild: "Waiting for you to rebuild the project environment."
+info_wait_for_verification: "Waiting for you to verify the script execution."

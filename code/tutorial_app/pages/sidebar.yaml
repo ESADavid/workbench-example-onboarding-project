@@ -28,6 +28,10 @@ navbar:
         target: advanced_04
       - label: "🤖 Using Nvidia AI Services"
         target: advanced_05
+      - label: "⚙️ Build Scripts and Automation"
+        target: advanced_06
+      - label: "📤 Sharing and Publishing Projects"
+        target: advanced_07
       ## INSERT HERE ##
   - label: Extras
     children:

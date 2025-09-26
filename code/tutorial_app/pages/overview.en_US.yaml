@@ -107,6 +107,14 @@ tasks:
 closing_msg: |
   ##### Ok. Now you are ready to get started for real.
 
+further_reading: |
+  #### 📚 Further Reading
+  - [NVIDIA AI Workbench User Guide](https://docs.nvidia.com/ai-workbench/user-guide/latest/overview/introduction.html)
+  - [Getting Started with AI Workbench](https://docs.nvidia.com/ai-workbench/user-guide/latest/quickstart/quickstart.html)
+  - [AI Workbench Example Projects](https://docs.nvidia.com/ai-workbench/user-guide/latest/quickstart/example-projects.html)
+  - [NVIDIA Developer Forum - AI Workbench](https://forums.developer.nvidia.com/c/ai-data-science/nvidia-ai-workbench/671)
+  - [NVIDIA NGC Catalog](https://catalog.ngc.nvidia.com/)
+
 # testing messages
 # the helpers in the testing module may return one of these errors
 info_wait_for_project: "Waiting for the project to exist."

@@ -1,0 +1,279 @@
+# header data
+title: Sharing and Publishing Projects
+welcome_msg: |
+  In this advanced tutorial, we will explore how to share your AI Workbench projects with others. Whether you want to collaborate with team members, publish your work to the community, or deploy your applications, understanding project sharing is essential for AI development workflows.
+
+  We'll cover:
+  - Publishing to NVIDIA NGC (NVIDIA GPU Cloud)
+  - Sharing via GitHub repositories
+  - Creating shareable project templates
+  - Managing project versions and releases
+header: Project Sharing and Collaboration
+
+# general strings
+waiting_msg: Let me know when you are ready.
+testing_msg: Waiting for task to complete.
+next: Next
+
+# task script
+tasks:
+  - name: Understand Project Sharing Options
+    msg: |
+      AI Workbench offers several ways to share your projects:
+
+      **1. NVIDIA NGC (GPU Cloud)**
+      - Publish to the NGC catalog for community access
+      - Share with NVIDIA's ecosystem
+      - Get featured in NVIDIA's project showcase
+
+      **2. GitHub Repositories**
+      - Open source your project
+      - Collaborate with developers worldwide
+      - Version control and issue tracking
+
+      **3. Private Sharing**
+      - Share with specific team members
+      - Internal collaboration
+      - Controlled access
+
+      **4. Project Templates**
+      - Create reusable project templates
+      - Share best practices
+      - Accelerate team onboarding
+
+      Let's explore these options in detail.
+    response: |
+      Great! You now understand the different ways to share AI Workbench projects. Each method serves different collaboration needs.
+
+  - name: Prepare Your Project for Sharing
+    msg: |
+      Before sharing your project, ensure it's ready for public consumption:
+
+      **1. Clean Up the Repository:**
+      - Remove sensitive data (API keys, credentials)
+      - Clear temporary files and cache
+      - Remove large binary files that shouldn't be in Git
+
+      **2. Add Documentation:**
+      - Create a comprehensive README.md
+      - Document setup and usage instructions
+      - Include license information
+
+      **3. Test the Project:**
+      - Ensure all dependencies are properly specified
+      - Test the build process
+      - Verify functionality works as expected
+
+      **4. Add Metadata:**
+      - Update project description
+      - Add relevant tags and categories
+      - Include contact information
+
+      Let's start by creating a proper README.md for your project.
+    response: |
+      Excellent! Your project is now properly prepared for sharing with clear documentation and clean structure.
+
+  - name: Publish to NVIDIA NGC
+    msg: |
+      Publishing to NVIDIA NGC makes your project discoverable to the AI community and NVIDIA's ecosystem.
+
+      **Steps to Publish:**
+
+      1. **Sign up for NGC:** Visit https://ngc.nvidia.com and create an account
+      2. **Prepare Your Project:**
+         - Ensure your project builds successfully
+         - Add proper metadata in `.project/spec.yaml`
+         - Test all functionality
+      3. **Publish:**
+         - Use the NGC CLI or web interface
+         - Choose appropriate categories
+         - Add description and tags
+
+      **NGC Publishing Command:**
+      ```bash
+      ngc registry project create <org>/<project-name> \
+        --description "Your project description" \
+        --team <team-name>
+      ```
+
+      **Benefits:**
+      - Reach NVIDIA's developer community
+      - Get featured in NVIDIA showcases
+      - Access to NVIDIA's infrastructure
+      - Professional presentation
+    response: |
+      Publishing to NGC is a great way to share your work with the AI community and gain visibility within NVIDIA's ecosystem.
+
+  - name: Share via GitHub
+    msg: |
+      GitHub is the most popular platform for open source AI projects. Here's how to share your project:
+
+      **1. Create a GitHub Repository:**
+      - Go to https://github.com and create a new repository
+      - Choose public or private visibility
+      - Initialize with a README
+
+      **2. Push Your Code:**
+      ```bash
+      git remote add origin https://github.com/yourusername/your-repo.git
+      git branch -M main
+      git push -u origin main
+      ```
+
+      **3. Add GitHub-Specific Files:**
+      - `.gitignore` (already exists)
+      - `LICENSE` (choose appropriate license)
+      - `CONTRIBUTING.md` (contribution guidelines)
+      - GitHub Actions for CI/CD
+
+      **4. Create Releases:**
+      - Use GitHub releases for versioned distributions
+      - Tag important milestones
+      - Attach binaries or model files if needed
+
+      **5. Community Building:**
+      - Add issues and discussion templates
+      - Create documentation wiki
+      - Set up project boards for organization
+    response: |
+      GitHub is perfect for open collaboration and building a community around your AI project.
+
+  - name: Create Project Templates
+    msg: |
+      Project templates help others quickly start new projects based on your work:
+
+      **1. Template Structure:**
+      - Remove project-specific data
+      - Add placeholder configurations
+      - Include setup scripts
+      - Provide example code
+
+      **2. Template Files:**
+      - `template-config.json` - Template configuration
+      - `setup-template.sh` - Setup script
+      - `examples/` - Example implementations
+      - `docs/template-guide.md` - Usage guide
+
+      **3. Make it a Template:**
+      - Add "Template repository" setting on GitHub
+      - Include template usage instructions
+      - Provide customization guides
+
+      **4. NGC Template Publishing:**
+      - Submit as a template to NGC catalog
+      - Include in NVIDIA's template library
+      - Help others bootstrap their projects
+
+      **Example Template Structure:**
+      ```
+      template/
+      ├── config/
+      │   ├── default-settings.json
+      │   └── environment.template
+      ├── scripts/
+      │   ├── setup.sh
+      │   └── customize.sh
+      ├── examples/
+      │   ├── basic-usage.py
+      │   └── advanced-example.py
+      └── docs/
+          └── template-usage.md
+      ```
+    response: |
+      Project templates are an excellent way to share best practices and help others get started quickly with AI Workbench.
+
+  - name: Manage Versions and Releases
+    msg: |
+      Proper version management ensures users can rely on stable releases:
+
+      **1. Semantic Versioning:**
+      - `MAJOR.MINOR.PATCH` format
+      - Major: Breaking changes
+      - Minor: New features
+      - Patch: Bug fixes
+
+      **2. Release Process:**
+      ```bash
+      # Create a release branch
+      git checkout -b release/v1.2.0
+
+      # Update version numbers
+      echo "1.2.0" > VERSION
+
+      # Commit and tag
+      git commit -m "Release v1.2.0"
+      git tag -a v1.2.0 -m "Release version 1.2.0"
+
+      # Push to GitHub
+      git push origin release/v1.2.0
+      git push origin v1.2.0
+      ```
+
+      **3. Changelog Management:**
+      - Keep a `CHANGELOG.md` file
+      - Document changes for each release
+      - Categorize by type (features, fixes, breaking changes)
+
+      **4. Distribution:**
+      - GitHub Releases for source code
+      - NGC for containerized versions
+      - PyPI for Python packages
+    response: |
+      Version management and releases help maintain project stability and user trust.
+
+  - name: Collaboration Best Practices
+    msg: |
+      Effective collaboration ensures successful shared projects:
+
+      **1. Code Quality:**
+      - Use consistent coding standards
+      - Add comprehensive tests
+      - Include code documentation
+      - Use linters and formatters
+
+      **2. Communication:**
+      - Clear contribution guidelines
+      - Regular updates and announcements
+      - Responsive issue management
+      - Community engagement
+
+      **3. Security:**
+      - Regular dependency updates
+      - Security scanning
+      - Responsible disclosure policies
+      - Access control management
+
+      **4. Sustainability:**
+      - Long-term maintenance plans
+      - Succession planning
+      - Community building
+      - Funding and sponsorship strategies
+
+      **5. Legal Considerations:**
+      - Proper licensing
+      - Intellectual property protection
+      - Contributor agreements
+      - Compliance requirements
+    response: |
+      Following collaboration best practices ensures your shared projects thrive and benefit the community.
+
+# footer data
+closing_msg: |
+  **Congratulations!** You have completed the Project Sharing tutorial.
+
+  In this tutorial, you learned how to:
+  - Prepare projects for sharing and publication
+  - Publish to NVIDIA NGC for community visibility
+  - Share via GitHub for open collaboration
+  - Create reusable project templates
+  - Manage versions and releases effectively
+  - Follow collaboration best practices
+
+  Sharing your AI Workbench projects helps advance the field and build valuable connections in the AI community.
+
+# testing messages
+info_wait_for_readme: "Waiting for you to create project documentation."
+info_wait_for_ngc_setup: "Waiting for NGC account and publishing setup."
+info_wait_for_github_repo: "Waiting for GitHub repository creation."
+info_wait_for_template_setup: "Waiting for template structure creation."
+info_wait_for_version_setup: "Waiting for version management setup."

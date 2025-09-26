@@ -181,6 +181,13 @@ tasks:
 
 closing_msg: |
   ##### Ok. That was a lightning tour of the Project Tab. We didn't cover everything, but hopefully you got the idea.
+
+further_reading: |
+  - [Managing Projects in AI Workbench](https://docs.nvidia.com/ai-workbench/user-guide/latest/projects/projects.html)
+  - [File Browser Overview](https://docs.nvidia.com/ai-workbench/user-guide/latest/projects/file-browser.html)
+  - [Package Management](https://docs.nvidia.com/ai-workbench/user-guide/latest/projects/packages.html)
+  - [GPU Resource Management](https://docs.nvidia.com/ai-workbench/user-guide/latest/projects/hardware.html)
+  - [Git Integration in AI Workbench](https://docs.nvidia.com/ai-workbench/user-guide/latest/projects/git.html)
   
 
 

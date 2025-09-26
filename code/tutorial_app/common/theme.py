@@ -157,6 +157,23 @@ def print_footer_nav(current: str):
         st.switch_page(next_page)
 
 
+def print_page_completion(messages: dict, name: str):
+    """Print the completion section including closing message, further reading, and navigation."""
+    # Print closing message
+    closing_msg = messages.get("closing_msg")
+    if closing_msg:
+        st.success(closing_msg)
+
+    # Print further reading if available
+    further_reading = messages.get("further_reading")
+    if further_reading:
+        st.markdown("### 📚 Further Reading")
+        st.markdown(further_reading)
+
+    # Print footer navigation
+    print_footer_nav(name)
+
+
 def load_stylesheet():
     """Load and apply the stylesheet."""
     for stylesheet in STYLESHEETS:

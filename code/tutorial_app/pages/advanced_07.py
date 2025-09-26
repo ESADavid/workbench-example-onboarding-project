@@ -12,14 +12,14 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Excercise page layout."""
+"""Project Sharing tutorial page layout."""
 
 from pathlib import Path
 
 import streamlit as st
 
 from common import localization, theme
-from pages import overview_tests as TESTS
+from . import advanced_07_tests as TESTS
 
 MESSAGES = localization.load_messages(__file__)
 NAME = Path(__file__).stem
@@ -32,13 +32,15 @@ with theme.Theme():
     st.header(MESSAGES.get("header"), divider="gray")
 
     # Print Tasks
-    for task in MESSAGES.get("tasks", []):
+    for COMPLETED_TASKS, task in enumerate(MESSAGES.get("tasks", []), 0):
         if not theme.print_task(NAME, task, TESTS, MESSAGES):
             break
-        COMPLETED_TASKS += 1
+
     else:
         # Print footer after last task
-        theme.print_page_completion(MESSAGES, NAME)
+        COMPLETED_TASKS += 1
+        st.success(MESSAGES.get("closing_msg", None))
+        theme.print_footer_nav(NAME)
 
     # save state updates
     theme.ensure_state(f"{NAME}_completed", COMPLETED_TASKS)

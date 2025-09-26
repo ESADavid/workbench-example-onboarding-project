@@ -40,8 +40,7 @@ with theme.Theme():
     else:
         # Print footer after last task
         COMPLETED_TASKS += 1
-        st.success(MESSAGES.get("closing_msg", None))
-        theme.print_footer_nav(NAME)
+        theme.print_page_completion(MESSAGES, NAME)
 
     # save state updates
     theme.ensure_state(f"{NAME}_completed", COMPLETED_TASKS)
